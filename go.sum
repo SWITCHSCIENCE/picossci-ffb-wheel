@@ -2,5 +2,7 @@ github.com/SWITCHSCIENCE/ffb_steering_controller v0.0.0-20240906044605-97e9d9afc
 github.com/SWITCHSCIENCE/ffb_steering_controller v0.0.0-20240906044605-97e9d9afc30d/go.mod h1:2zBr/+/CBsq3AqHhLkmF/LlVCJSu0Y8vtiaf+UfKnw4=
 github.com/google/shlex v0.0.0-20191202100458-e7afc7fbc510 h1:El6M4kTTCOh6aBiKaUGG7oYTSPP8MxqL4YI3kZKwcP4=
 github.com/google/shlex v0.0.0-20191202100458-e7afc7fbc510/go.mod h1:pupxD2MaaD3pAXIBCelhxNneeOaAeabZDe5s4K6zSpQ=
+github.com/veandco/go-sdl2 v0.4.40 h1:fZv6wC3zz1Xt167P09gazawnpa0KY5LM7JAvKpX9d/U=
+github.com/veandco/go-sdl2 v0.4.40/go.mod h1:OROqMhHD43nT4/i9crJukyVecjPNYYuCofep6SNiAjY=
 tinygo.org/x/drivers v0.28.0 h1:ROVrGGXddmpn2+oV/Bu3LceYbtPCJckmgIqvPcN/L0k=
 tinygo.org/x/drivers v0.28.0/go.mod h1:T6snsUqS0RAxOANxiV81fQwLxDDNmprxTAYzmxoA7J0=
