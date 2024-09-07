@@ -34,12 +34,12 @@ https://github.com/SWITCHSCIENCE/picossci-ffb-wheel
 ```
 git clone https://github.com/SWITCHSCIENCE/picossci-ffb-wheel
 cd picossci-ffb-wheel
-make build
+tinygo build -target pico -o build/diy-ffb-wheel.uf2 .
 ```
 
 ## 書き込み
 ボードのBootSelボタンを押しながらPCに接続
 「RPI-RP2」という名称のストレージが見えるようになります。
 ```
-make flash
+tinygo flash -target pico .
 ```
