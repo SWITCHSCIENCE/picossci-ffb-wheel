@@ -10,7 +10,12 @@ export TAGS
 
 build:
 	mkdir -p build
-	$(TINYGO) build -tags '$(TAGS)' -target $(TARGET) -o build/$(NAME).uf2 .
+	$(TINYGO) build -scheduler tasks -tags '$(TAGS)' -target $(TARGET) -o build/$(NAME).uf2 .
+
+build-docker:
+	mkdir -p build
+	docker build --rm -t localhost/tinygo30 .
+	docker run --rm -it -v $$(pwd -W):/app -w /app localhost/tinygo30
 
 all: flash wait monitor
 

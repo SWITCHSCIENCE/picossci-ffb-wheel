@@ -1,7 +1,10 @@
 package main
 
+// MARK: import
+
 import (
 	"context"
+	"machine/usb"
 	"time"
 
 	"github.com/SWITCHSCIENCE/ffb_steering_controller/control"
@@ -10,9 +13,25 @@ import (
 	"github.com/SWITCHSCIENCE/picossci-ffb-wheel/board"
 )
 
+// MARK: variables
 var (
 	sw [3]bool
 )
+
+// MARK: functions
+
+func init() {
+	//usb.VendorID = 0x2341
+	//usb.ProductID = 0x8036
+	usb.Product = "DIY Steering Controller"
+	usb.Manufacturer = "Switch Science"
+	/*
+		for !machine.Serial.DTR() {
+			time.Sleep(100 * time.Millisecond)
+		}
+		println("boot")
+	*/
+}
 
 func update() {
 	s := settings.Get()

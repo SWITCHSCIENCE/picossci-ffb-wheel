@@ -4,7 +4,7 @@ go 1.23
 
 require (
 	github.com/SWITCHSCIENCE/ffb_steering_controller v0.0.0-20240906044605-97e9d9afc30d
-	tinygo.org/x/drivers v0.28.0
+	tinygo.org/x/drivers v0.33.0
 )
 
 require (
