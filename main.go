@@ -4,6 +4,7 @@ package main
 
 import (
 	"context"
+	"machine"
 	"machine/usb"
 	"time"
 
@@ -25,12 +26,12 @@ func init() {
 	//usb.ProductID = 0x8036
 	usb.Product = "DIY Steering Controller"
 	usb.Manufacturer = "Switch Science"
-	/*
+	if false {
 		for !machine.Serial.DTR() {
 			time.Sleep(100 * time.Millisecond)
 		}
 		println("boot")
-	*/
+	}
 }
 
 func update() {

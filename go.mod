@@ -3,7 +3,7 @@ module github.com/SWITCHSCIENCE/picossci-ffb-wheel
 go 1.23
 
 require (
-	github.com/SWITCHSCIENCE/ffb_steering_controller v0.0.0-20240906044605-97e9d9afc30d
+	github.com/SWITCHSCIENCE/ffb_steering_controller v0.0.0-20251114113520-9eeb6ef4903c
 	tinygo.org/x/drivers v0.33.0
 )
 
