@@ -18,6 +18,8 @@ github.com/SWITCHSCIENCE/ffb_steering_controller v0.0.0-20251114113520-9eeb6ef49
 github.com/SWITCHSCIENCE/ffb_steering_controller v0.0.0-20251114113520-9eeb6ef4903c/go.mod h1:2zBr/+/CBsq3AqHhLkmF/LlVCJSu0Y8vtiaf+UfKnw4=
 github.com/SWITCHSCIENCE/ffb_steering_controller v0.0.0-20251114114750-18a9768f1b69 h1:lZPRiTyZEhFd/EtAOKxGOrNxhij8lb0xgwfQJap308g=
 github.com/SWITCHSCIENCE/ffb_steering_controller v0.0.0-20251114114750-18a9768f1b69/go.mod h1:2zBr/+/CBsq3AqHhLkmF/LlVCJSu0Y8vtiaf+UfKnw4=
+github.com/SWITCHSCIENCE/ffb_steering_controller v0.0.0-20251126114851-505fb5f12862 h1:2x9UPS+3X13LapNCEIQm6yq+KHzlRYl5HNK9pz3nNeA=
+github.com/SWITCHSCIENCE/ffb_steering_controller v0.0.0-20251126114851-505fb5f12862/go.mod h1:2zBr/+/CBsq3AqHhLkmF/LlVCJSu0Y8vtiaf+UfKnw4=
 github.com/google/shlex v0.0.0-20191202100458-e7afc7fbc510 h1:El6M4kTTCOh6aBiKaUGG7oYTSPP8MxqL4YI3kZKwcP4=
 github.com/google/shlex v0.0.0-20191202100458-e7afc7fbc510/go.mod h1:pupxD2MaaD3pAXIBCelhxNneeOaAeabZDe5s4K6zSpQ=
 github.com/veandco/go-sdl2 v0.4.40 h1:fZv6wC3zz1Xt167P09gazawnpa0KY5LM7JAvKpX9d/U=
