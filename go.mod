@@ -10,4 +10,5 @@ require (
 require (
 	github.com/google/shlex v0.0.0-20191202100458-e7afc7fbc510 // indirect
 	github.com/veandco/go-sdl2 v0.4.40 // indirect
+	tinygo.org/x/tinyfont v0.6.0 // indirect
 )

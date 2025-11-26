@@ -14,6 +14,32 @@ import (
 	"github.com/SWITCHSCIENCE/picossci-ffb-wheel/board"
 )
 
+const (
+	FLASH_TARGET_OFFSET = 0 // 書き込み開始アドレス(例)
+)
+
+// Flashに1ページ書き込み
+func writeFlashBlock(data []byte) error {
+	err := machine.Flash.EraseBlocks(0, 1)
+	if err != nil {
+		return err
+	}
+	if _, err := machine.Flash.WriteAt(data, FLASH_TARGET_OFFSET); err != nil {
+		return err
+	}
+	return nil
+}
+
+// Flashから読み出し
+func readFlashBlock() ([]byte, error) {
+	buff := make([]byte, machine.Flash.WriteBlockSize())
+	n, err := machine.Flash.ReadAt(buff, FLASH_TARGET_OFFSET)
+	if err != nil {
+		return nil, err
+	}
+	return buff[:n], nil
+}
+
 // MARK: variables
 var (
 	sw [3]bool
@@ -26,16 +52,18 @@ func init() {
 	//usb.ProductID = 0x8036
 	usb.Product = "DIY Steering Controller"
 	usb.Manufacturer = "Switch Science"
+	board.LCD.Show(board.Logo)
+	board.LCD.Display()
 	if false {
 		for !machine.Serial.DTR() {
 			time.Sleep(100 * time.Millisecond)
 		}
-		println("boot")
+		//println("boot")
+		//println(machine.FlashDataStart())
 	}
 }
 
-func update() {
-	s := settings.Get()
+func update(menu *Menu) {
 	now := [3]bool{
 		!board.SW1.Get(),
 		!board.SW2.Get(),
@@ -47,78 +75,51 @@ func update() {
 		now[2] && !sw[2],
 	}
 	copy(sw[:], now[:])
-	current := s.Lock2Lock
-	next := current
-	switch {
-	case active[2]:
-		switch current {
-		case 1080:
-		case 720:
-			next = 1080
-		case 540:
-			next = 720
-		case 360:
-			next = 540
-		case 180:
-			next = 360
-		}
-	case active[0]:
-		switch s.Lock2Lock {
-		case 1080:
-			next = 720
-		case 720:
-			next = 540
-		case 540:
-			next = 360
-		case 360:
-			next = 180
-		case 180:
-		}
+	if active[0] {
+		menu.Up()
+	} else if active[1] {
+		menu.Enter()
+	} else if active[2] {
+		menu.Down()
 	}
-	switch next {
-	case 1080:
+	if menu.IsSetting() {
 		board.LED1.Low()
-		board.LED2.High()
-	case 720:
+	} else {
 		board.LED1.Low()
-		board.LED2.Low()
-	case 540:
-		board.LED1.High()
-		board.LED2.Low()
-	case 360:
-		board.LED1.High()
-		board.LED2.Low()
-	case 180:
-		board.LED1.High()
-		board.LED2.High()
-	}
-	if s.Lock2Lock != next {
-		s.Lock2Lock = next
-		settings.Update(s)
 	}
 }
 
 func main() {
-	board.LED1.Low()
+	board.LED2.Low()
 	can, err := board.NewCan()
 	if err != nil {
 		println(err)
 		return
 	}
 	js := control.NewWheel(can)
-	board.ShowLogo()
-	s := settings.Get()
-	s.MaxCenteringForce = 50
-	settings.Update(s)
+	b, err := readFlashBlock()
+	if err != nil {
+		println(err)
+		return
+	}
+	s, err := settings.Unmarshal(b)
+	if err != nil {
+		println(err)
+		s = settings.Default()
+	}
+	if err := settings.Update(s); err != nil {
+		println(err)
+	}
 	ctx, cancel := context.WithCancel(context.Background())
 	go func() {
+		menu := NewMenu()
 		tick := time.NewTicker(20 * time.Millisecond)
 		for {
 			select {
 			case <-ctx.Done():
 				return
 			case <-tick.C:
-				update()
+				update(menu)
 			}
 		}
 	}()
