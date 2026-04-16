@@ -29,7 +29,7 @@ func init() {
 
 func NewCan() (*mcp2515.Device, error) {
 	can := mcp2515.New(machine.SPI0, CAN_CS)
-	can.Configure()
+	can.Configure(mcp2515.Configuration{Extended: false})
 	if err := can.Begin(mcp2515.CAN500kBps, mcp2515.Clock8MHz); err != nil {
 		return nil, err
 	}
